@@ -11,6 +11,7 @@ import MovieCatalog from './pages/MovieCatalog';
 import MovieDetails from './pages/MovieDetails';
 import { Movies, Theatres, Releases } from './pages/GenericPages';
 import { AuthProvider } from './context/AuthContext';
+import CustomCursor from './components/CustomCursor';
 
 const Home = () => (
   <div className="bg-[#0f0b15] min-h-screen font-sans">
@@ -26,6 +27,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <CustomCursor />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
