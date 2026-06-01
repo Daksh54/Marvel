@@ -11,7 +11,7 @@ const heroMovies = [
     year: '2014',
     duration: '2h 1m',
     description: 'A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.',
-    image: '/assets/wp9049747 1.png',
+    image: 'https://image.tmdb.org/t/p/original/uLtVbjvS1O7gXL8lUOwsFOH4man.jpg',
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const heroMovies = [
     year: '2019',
     duration: '3h 1m',
     description: 'After the devastating events of Infinity War, the remaining Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.',
-    image: '/assets/wp4280803 1.png',
+    image: 'https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
   },
   {
     id: 6,
@@ -29,7 +29,7 @@ const heroMovies = [
     year: '2022',
     duration: '2h 56m',
     description: 'When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city\'s hidden corruption.',
-    image: '/assets/wp9049779 1.png',
+    image: 'https://image.tmdb.org/t/p/original/rvtdN5XkWAfGX6xDuPL6yYS2seK.jpg',
   },
   {
     id: 5,
@@ -38,7 +38,7 @@ const heroMovies = [
     year: '2017',
     duration: '2h 21m',
     description: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war.',
-    image: '/assets/wp9049770 1.png',
+    image: 'https://image.tmdb.org/t/p/original/AaABt75ZzfMGrscUR2seabz4PEX.jpg',
   }
 ];
 
