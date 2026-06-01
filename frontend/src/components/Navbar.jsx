@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { useAuthContext } from '../context/AuthContext';
@@ -6,10 +6,19 @@ import { useAuthContext } from '../context/AuthContext';
 const Navbar = () => {
   const { user } = useAuthContext();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="absolute top-0 left-0 w-full z-50 flex items-center justify-between px-10 py-6 text-white font-sans">
+    <nav className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-10 transition-all duration-300 font-sans text-white ${isScrolled ? 'py-4 bg-[#0f0b15]/80 backdrop-blur-xl border-b border-white/10 shadow-lg' : 'py-6 bg-gradient-to-b from-black/80 to-transparent'}`}>
       <div className="flex items-center gap-2">
         <Link to="/" className="text-2xl font-bold flex items-center">
           <span className="text-[#f83d5a]">Q</span>uick<span className="text-white font-light">Show</span>

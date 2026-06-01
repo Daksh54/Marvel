@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaCalendar, FaClock, FaArrowRight } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const heroMovies = [
@@ -44,6 +44,8 @@ const heroMovies = [
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 800], [0, 250]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,7 +67,8 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full"
+          style={{ y }}
+          className="absolute inset-0 w-full h-full scale-110"
         >
           <img 
             src={currentMovie.image} 

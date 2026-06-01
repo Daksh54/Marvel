@@ -7,3 +7,23 @@
 body {
   cursor: none;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #0f0b15;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0b15;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2438;
+  border-radius: 10px;
+  border: 2px solid #0f0b15;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f83d5a;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Link, useSearchParams } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 // Mock catalog data
@@ -50,19 +50,25 @@ const MovieCatalog = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="bg-[#18151f] rounded-xl overflow-hidden hover:scale-[1.05] transition-transform duration-300 shadow-lg"
+              className="bg-[#18151f] rounded-xl overflow-hidden hover:scale-[1.05] transition-all duration-300 shadow-lg hover:shadow-[#f83d5a]/20 flex flex-col group relative"
             >
-              <Link to={`/movie/${movie.id}`}>
-                <div className="h-56 w-full overflow-hidden">
-                  <img src={movie.image} alt={movie.title} className="w-full h-full object-cover" />
+              <Link to={`/movie/${movie.id}`} className="flex-grow flex flex-col relative">
+                <div className="h-56 w-full overflow-hidden relative">
+                  <img src={movie.image} alt={movie.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                    <span className="bg-[#f83d5a] text-white p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+                      <FaArrowRight />
+                    </span>
+                  </div>
                 </div>
-                <div className="p-4 flex flex-col justify-between">
+                <div className="p-4 flex flex-col justify-between flex-grow relative z-10 bg-[#18151f]">
                   <div>
-                    <h3 className="text-white font-semibold text-base leading-tight mb-1 truncate">{movie.title}</h3>
+                    <h3 className="text-white font-semibold text-base leading-tight mb-1 truncate group-hover:text-[#f83d5a] transition-colors">{movie.title}</h3>
                     <p className="text-gray-400 text-xs mb-3">{movie.details}</p>
                   </div>
                   <div className="flex items-center justify-between mt-auto">
-                    <span className="text-[#f83d5a] text-sm font-medium hover:underline">Details</span>
+                    <span className="text-white border border-white/10 bg-white/5 hover:bg-white/10 px-3 py-1 rounded-full text-xs font-medium transition-colors">Details</span>
                     <div className="flex items-center gap-1 text-gray-300 text-sm">
                       <FaStar className="text-[#f83d5a]" size={12} /> {movie.rating}
                     </div>

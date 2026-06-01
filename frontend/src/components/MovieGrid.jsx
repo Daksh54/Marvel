@@ -21,17 +21,23 @@ const MovieCard = ({ movie, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-[#18151f] rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 flex flex-col"
+      className="bg-[#18151f] rounded-xl overflow-hidden hover:scale-[1.05] transition-all duration-300 flex flex-col group shadow-lg hover:shadow-[#f83d5a]/20"
     >
-      <Link to={`/movie/${movie.id}`} className="flex-grow flex flex-col">
-        <div className="h-48 w-full overflow-hidden">
-          <img src={movie.image} alt={movie.title} className="w-full h-full object-cover" />
+      <Link to={`/movie/${movie.id}`} className="flex-grow flex flex-col relative">
+        <div className="h-48 w-full overflow-hidden relative">
+          <img src={movie.image} alt={movie.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+            <span className="bg-[#f83d5a] text-white p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+              <FaArrowRight />
+            </span>
+          </div>
         </div>
-        <div className="p-4 flex flex-col flex-grow">
-          <h3 className="text-white font-semibold text-lg leading-tight mb-2 truncate">{movie.title}</h3>
+        <div className="p-4 flex flex-col flex-grow relative z-10 bg-[#18151f]">
+          <h3 className="text-white font-semibold text-lg leading-tight mb-2 truncate group-hover:text-[#f83d5a] transition-colors">{movie.title}</h3>
           <p className="text-gray-400 text-sm mb-4">{movie.details}</p>
           <div className="flex items-center justify-between mt-auto">
-            <button className="bg-[#f83d5a] hover:bg-[#d6344d] text-white text-sm px-5 py-2 rounded-full font-medium transition-colors" onClick={(e) => e.preventDefault()}>
+            <button className="bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm px-5 py-2 rounded-full font-medium transition-colors" onClick={(e) => { e.preventDefault(); }}>
               Buy Ticket
             </button>
             <div className="flex items-center gap-1 text-gray-300">
