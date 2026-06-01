@@ -1,10 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { useAuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
   const { user } = useAuthContext();
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   return (
     <nav className="absolute top-0 left-0 w-full z-50 flex items-center justify-between px-10 py-6 text-white font-sans">
@@ -21,10 +23,27 @@ const Navbar = () => {
         <Link to="/releases" className="text-sm hover:text-[#f83d5a] transition-colors">Releases</Link>
       </div>
 
-      <div className="flex items-center gap-6">
-        <Link to="/search" className="text-white hover:text-[#f83d5a] transition-colors">
-          <FaSearch size={18} />
-        </Link>
+      <div className="flex items-center gap-4 md:gap-6">
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (searchQuery.trim()) {
+              navigate(`/catalog?search=${encodeURIComponent(searchQuery)}`);
+            }
+          }} 
+          className="flex items-center bg-black/40 px-3 py-1.5 rounded-full border border-white/10 group focus-within:border-[#f83d5a]/50 transition-colors hidden sm:flex"
+        >
+          <input 
+            type="text" 
+            placeholder="Search..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none w-24 md:w-32 lg:w-48"
+          />
+          <button type="submit" className="text-gray-400 hover:text-[#f83d5a] transition-colors">
+            <FaSearch size={14} />
+          </button>
+        </form>
         {user ? (
           <Link to="/profile" className="flex items-center gap-2 bg-black/40 hover:bg-black/60 px-4 py-2 rounded-full border border-white/10 transition-colors">
             {user.photoURL ? (

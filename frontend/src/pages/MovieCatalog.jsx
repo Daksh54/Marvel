@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
@@ -20,13 +20,31 @@ export const catalogMovies = [
 ];
 
 const MovieCatalog = () => {
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('search')?.toLowerCase() || '';
+
+  const filteredMovies = catalogMovies.filter(movie => 
+    movie.title.toLowerCase().includes(searchQuery) ||
+    movie.details.toLowerCase().includes(searchQuery)
+  );
+
   return (
     <div className="min-h-screen bg-[#0f0b15] font-sans flex flex-col">
       <Navbar />
       <div className="flex-grow px-10 md:px-20 pt-32 pb-16">
-        <h1 className="text-3xl font-bold text-white mb-10">Movie Catalog</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {catalogMovies.map((movie, index) => (
+        <h1 className="text-3xl font-bold text-white mb-2">Movie Catalog</h1>
+        {searchQuery && (
+          <p className="text-gray-400 mb-8">Showing results for: <span className="text-white">"{searchQuery}"</span></p>
+        )}
+        
+        {filteredMovies.length === 0 ? (
+          <div className="text-center py-20">
+            <h2 className="text-2xl font-bold text-white mb-2">No movies found</h2>
+            <p className="text-gray-400">Try adjusting your search query.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-8">
+            {filteredMovies.map((movie, index) => (
             <motion.div 
               key={movie.id}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -53,7 +71,8 @@ const MovieCatalog = () => {
               </Link>
             </motion.div>
           ))}
-        </div>
+          </div>
+        )}
       </div>
       <Footer />
     </div>
