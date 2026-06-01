@@ -134,7 +134,7 @@ const Hero = () => {
         </Link>
 
         {/* Carousel Indicators */}
-        <div className="absolute bottom-10 left-10 md:left-20 flex gap-2 z-20">
+        <div className="mt-12 flex gap-2 z-20">
           {heroMovies.map((_, idx) => (
             <div 
               key={idx} 
