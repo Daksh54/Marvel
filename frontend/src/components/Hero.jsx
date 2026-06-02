@@ -73,7 +73,7 @@ const Hero = () => {
           <img 
             src={currentMovie.image} 
             alt={currentMovie.title} 
-            className="w-full h-full object-cover object-top opacity-50"
+            className="w-full h-full object-contain md:object-cover object-center md:object-top opacity-50"
           />
         </motion.div>
       </AnimatePresence>

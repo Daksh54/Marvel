@@ -6,6 +6,11 @@
 
 body {
   cursor: none;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 /* Custom Scrollbar */
