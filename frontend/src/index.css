@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
-* {
-  cursor: none !important;
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+
+  body {
+    cursor: none;
+  }
 }
 
 body {
-  cursor: none;
   overflow-x: hidden;
 }
 
